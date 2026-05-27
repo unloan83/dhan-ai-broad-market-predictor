@@ -1,0 +1,9 @@
+pandas
+numpy
+yfinance
+scikit-learn
+xgboost
+nsepython
+requests
+python-dotenv
+ta-lib
