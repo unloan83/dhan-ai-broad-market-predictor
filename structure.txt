@@ -1,0 +1,12 @@
+dhan-ai-broad-market-predictor/
+├── main.py
+├── data_fetcher.py
+├── indicators.py
+├── predictor.py
+├── predictions/
+│   └── daily_predictions.csv     # Will be auto-created
+├── config.py
+├── requirements.txt
+├── .github/
+│   └── workflows/
+│       └── daily-prediction.yml
