@@ -1,10 +1,11 @@
-from indicators import add_technical_indicators
 import yfinance as yf
 from xgboost import XGBRegressor
+from indicators import add_technical_indicators
+import config
 
 def predict_eod(symbol):
     try:
-        df = yf.download(f"{symbol}.NS", period="1y", progress=False)
+        df = yf.download(f"{symbol}.NS", period="1y", progress=False, threads=False)
         if len(df) < 150:
             return None, None
             
@@ -19,9 +20,9 @@ def predict_eod(symbol):
         model = XGBRegressor(n_estimators=200, learning_rate=0.05, max_depth=6, random_state=42)
         model.fit(X.iloc[:-1], y.iloc[:-1])
         
-        pred = model.predict(X.iloc[-1:].values)[0]
-        current = df['Close'].iloc[-1]
+        current = round(float(df['Close'].iloc[-1]), 2)
+        predicted = round(float(model.predict(X.iloc[-1:].values)[0]), 2)
         
-        return round(current, 2), round(pred, 2)
+        return current, predicted
     except:
         return None, None
