@@ -27,7 +27,7 @@ def add_technical_indicators(df):
     df['BB_Upper'] = df['BB_Mid'] + 2 * df['BB_Std']
     df['BB_Lower'] = df['BB_Mid'] - 2 * df['BB_Std']
     
-    # Volume Features
+    # Volume
     df['Volume_MA10'] = df['Volume'].rolling(10).mean()
     df['Volume_Ratio'] = df['Volume'] / df['Volume_MA10']
     
