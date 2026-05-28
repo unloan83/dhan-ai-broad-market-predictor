@@ -1,6 +1,6 @@
 import pandas as pd
 from datetime import date
-import config                    # ← Make sure this is here
+import config
 from data_fetcher import filter_stocks
 from predictor import predict_eod
 
@@ -15,11 +15,14 @@ except:
 today_preds = []
 candidates = filter_stocks()
 
+print(f"Found {len(candidates)} candidate stocks in 200-750 range.")
+
 for symbol in candidates:
     current, predicted = predict_eod(symbol)
     if predicted is None:
         continue
-    upside = ((predicted - current) / current) * 100 if current else 0
+        
+    upside = ((predicted - current) / current) * 100 if current > 0 else 0
     
     if upside > 1.0:
         today_preds.append({
@@ -33,10 +36,11 @@ for symbol in candidates:
         })
 
 df_today = pd.DataFrame(today_preds)
-df_today = df_today.nlargest(config.TOP_PREDICTIONS, 'Upside_%')
+if not df_today.empty:
+    df_today = df_today.nlargest(config.TOP_PREDICTIONS, 'Upside_%')
 
 # Append to history
 history = pd.concat([history, df_today], ignore_index=True)
 history.to_csv(csv_path, index=False)
 
-print(f"✅ Generated {len(df_today)} predictions for {date.today()}")
+print(f"✅ Daily prediction completed! Generated {len(df_today)} predictions.")
