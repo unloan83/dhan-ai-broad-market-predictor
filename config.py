@@ -2,11 +2,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-DHAN_CLIENT_ID = os.getenv("1111458681")
-DHAN_ACCESS_TOKEN = os.getenv("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzgwMDMzOTM1LCJpYXQiOjE3Nzk5NDc1MzUsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTExNDU4NjgxIn0.RuTxQfIuU3FHWlkbZ_0B0mSSJ6brjCdgQrclIzQHSOJfuVSytAKr0kW5b8gJGL80TJeBaMhtVm1p6DAX3jDjrQ")
-NEWS_API_KEY = os.getenv("b8498168bcb942088a127cdd1b8e265c")
+DHAN_CLIENT_ID = os.getenv("DHAN_CLIENT_ID")
+DHAN_ACCESS_TOKEN = os.getenv("DHAN_ACCESS_TOKEN")
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
+# Filters
 MIN_PRICE = 200
 MAX_PRICE = 750
-MAX_CANDIDATES = 80
+MAX_CANDIDATES = 60      # Reduced for speed & reliability
 TOP_PREDICTIONS = 10
