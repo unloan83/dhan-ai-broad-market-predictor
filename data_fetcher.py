@@ -1,9 +1,8 @@
 import yfinance as yf
 import pandas as pd
-import config   # ← This must be imported
 
 def get_broad_nse_symbols():
-    """Stable list of symbols in 200-750 range for GitHub Actions"""
+    """Stable list for GitHub Actions"""
     return [
         "RELIANCE", "HDFCBANK", "SBIN", "TCS", "INFY", "ICICIBANK", "BHARTIARTL",
         "ITC", "HINDUNILVR", "LT", "AXISBANK", "KOTAKBANK", "SUNPHARMA", "TITAN",
@@ -16,23 +15,27 @@ def filter_stocks():
     symbols = get_broad_nse_symbols()
     filtered = []
     
-    print(f"Scanning {len(symbols)} symbols...")   # For debugging
+    MIN_PRICE = 200
+    MAX_PRICE = 750
+    MAX_CANDIDATES = 60   # Hardcoded here to avoid import error
+    
+    print(f"Scanning {len(symbols)} symbols for 200-750 CMP range...")
     
     for sym in symbols:
         try:
-            data = yf.download(f"{sym}.NS", period="10d", progress=False, threads=False)
+            data = yfinance.download(f"{sym}.NS", period="10d", progress=False, threads=False)
             if data.empty:
                 continue
                 
             cmp = float(data['Close'].iloc[-1])
             vol = int(data['Volume'].iloc[-1])
             
-            if config.MIN_PRICE <= cmp <= config.MAX_PRICE and vol > 200000:
+            if MIN_PRICE <= cmp <= MAX_PRICE and vol > 200000:
                 filtered.append(sym)
                 
-        except Exception as e:
-            continue  # Skip any errors quietly
+        except:
+            continue
     
-    result = filtered[:config.MAX_CANDIDATES]
-    print(f"Found {len(result)} stocks in 200-750 CMP range.")
+    result = filtered[:MAX_CANDIDATES]
+    print(f"✅ Found {len(result)} stocks in target range.")
     return result
