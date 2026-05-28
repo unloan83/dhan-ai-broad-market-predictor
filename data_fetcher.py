@@ -6,8 +6,8 @@ import pandas as pd
 from nsepython import nse_eq_symbols
 
 # Add these constants
-MIN_PRICE = 50  # Adjust based on your criteria
-MAX_PRICE = 100000  # Adjust based on your criteria
+MIN_PRICE = 100  # Adjust based on your criteria
+MAX_PRICE = 50000  # Adjust based on your criteria
 MAX_CANDIDATES = 50  # Adjust based on how many stocks you want
 
 def get_broad_nse_symbols():
