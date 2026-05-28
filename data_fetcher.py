@@ -1,20 +1,22 @@
 import yfinance as yf
 import pandas as pd
-import config
+import config   # ← This must be imported
 
 def get_broad_nse_symbols():
-    """Simple fallback list for GitHub Actions (reliable)"""
-    # You can expand this list later
-    popular_symbols = [
+    """Stable list of symbols in 200-750 range for GitHub Actions"""
+    return [
         "RELIANCE", "HDFCBANK", "SBIN", "TCS", "INFY", "ICICIBANK", "BHARTIARTL",
         "ITC", "HINDUNILVR", "LT", "AXISBANK", "KOTAKBANK", "SUNPHARMA", "TITAN",
-        "ULTRACEMCO", "ADANIENT", "ADANIPORTS", "POWERGRID", "NTPC", "BAJFINANCE"
+        "ULTRACEMCO", "ADANIENT", "ADANIPORTS", "POWERGRID", "NTPC", "BAJFINANCE",
+        "JSWSTEEL", "MARUTI", "HCLTECH", "COALINDIA", "ONGC", "GRASIM", "WIPRO",
+        "INDUSINDBK", "TECHM", "DRREDDY", "CIPLA", "APOLLOHOSP", "HEROMOTOCO"
     ]
-    return popular_symbols
 
 def filter_stocks():
     symbols = get_broad_nse_symbols()
     filtered = []
+    
+    print(f"Scanning {len(symbols)} symbols...")   # For debugging
     
     for sym in symbols:
         try:
@@ -29,6 +31,8 @@ def filter_stocks():
                 filtered.append(sym)
                 
         except Exception as e:
-            continue  # Skip errors silently
+            continue  # Skip any errors quietly
     
-    return filtered[:config.MAX_CANDIDATES]
+    result = filtered[:config.MAX_CANDIDATES]
+    print(f"Found {len(result)} stocks in 200-750 CMP range.")
+    return result
