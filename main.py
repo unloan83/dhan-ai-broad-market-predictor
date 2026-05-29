@@ -1,7 +1,11 @@
 import pandas as pd
 from datetime import date
+import os
 from data_fetcher import filter_stocks
 from predictor import predict_eod
+
+# Ensure predictions folder exists
+os.makedirs("predictions", exist_ok=True)
 
 csv_path = "predictions/daily_predictions.csv"
 
@@ -23,7 +27,7 @@ for symbol in candidates:
         
     upside = ((predicted - current) / current) * 100 if current > 0 else 0
     
-    if upside > 1.0:
+    if upside > 0.5:   # Lowered threshold temporarily
         today_preds.append({
             'Date': date.today().isoformat(),
             'Symbol': symbol,
