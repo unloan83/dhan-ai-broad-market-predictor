@@ -22,6 +22,8 @@ for symbol in candidates:
         
         upside = ((predicted - current) / current) * 100 if current > 0 else 0
     
+        upside = ((predicted - current) / current) * 100 if current > 0 else 0
+    
     if upside > 0.4:        # Very lenient
         today_preds.append({
             'Date': date.today().isoformat(),
@@ -31,6 +33,7 @@ for symbol in candidates:
             'Upside_%': round(upside, 2),
             'Actual_NextDay': None,
             'Hit': None
+        })
         })
 
 df_today = pd.DataFrame(today_preds)
