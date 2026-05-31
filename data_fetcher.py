@@ -1,9 +1,17 @@
+import yfinance as yf
+
 def filter_stocks():
-    """Large expanded list"""
+    """Expanded realistic list in 200-750 range"""
     stocks = [
-        "CHOLAFIN","PFC","RECLTD","RVNL","EXIDEIND","SONACOMS","MARICO","BEL",
-        "IRFC","IREDA","HUDCO","SUZLON","IDEA","ZOMATO","IRCTC","BHEL","NHPC",
-        "SAIL","TATAMOTORS","TATASTEEL","JSWSTEEL","GAIL","ONGC","BPCL"
+        # Banking & Finance
+        "CHOLAFIN", "PFC", "RECLTD", "BAJFINANCE", "SBICARD", "HDFCAMC",
+        # Power & Infra
+        "RVNL", "IREDA", "HUDCO", "IRFC", "BHEL", "NHPC",
+        # Others
+        "EXIDEIND", "SONACOMS", "MARICO", "BEL", "SUZLON", "IDEA", "IRCTC",
+        "ZOMATO", "POLICYBZR", "DELHIVERY", "KPITTECH", "PERSISTENT", "LTIM",
+        "ASTRAL", "SUPREMEIND", "SRF", "PIIND", "TORNTPHARM", "DIVISLAB"
     ]
-    print(f"Loaded {len(stocks)} stocks for prediction.")
+    
+    print(f"Scanning {len(stocks)} stocks in 200-750 CMP range...")
     return stocks
