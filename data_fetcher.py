@@ -1,11 +1,9 @@
 def filter_stocks():
-    """Expanded realistic list for 150-900 range"""
+    """Large expanded list"""
     stocks = [
-        "CHOLAFIN", "PFC", "RECLTD", "RVNL", "EXIDEIND", "SONACOMS", "MARICO", 
-        "BEL", "IRFC", "IREDA", "HUDCO", "SUZLON", "IDEA", "ZOMATO", "IRCTC",
-        "HAL", "BHEL", "NHPC", "SAIL", "TATAMOTORS", "TATASTEEL", "JSWSTEEL",
-        "ADANIENT", "ADANIPORTS", "GAIL", "ONGC", "BPCL", "HINDPETRO", "IOC"
+        "CHOLAFIN","PFC","RECLTD","RVNL","EXIDEIND","SONACOMS","MARICO","BEL",
+        "IRFC","IREDA","HUDCO","SUZLON","IDEA","ZOMATO","IRCTC","BHEL","NHPC",
+        "SAIL","TATAMOTORS","TATASTEEL","JSWSTEEL","GAIL","ONGC","BPCL"
     ]
-    
-    print(f"Using expanded list of {len(stocks)} stocks (₹150-900 range)...")
+    print(f"Loaded {len(stocks)} stocks for prediction.")
     return stocks
