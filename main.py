@@ -22,7 +22,7 @@ for symbol in candidates:
         
     upside = ((predicted - current) / current) * 100 if current > 0 else 0
     
-    if upside > 0.5:        # Lower threshold
+    if upside > 0.3:        # Lower threshold
         today_preds.append({
             'Date': date.today().isoformat(),
             'Symbol': symbol,
