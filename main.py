@@ -34,7 +34,6 @@ for symbol in candidates:
             'Actual_NextDay': None,
             'Hit': None
         })
-        })
 
 df_today = pd.DataFrame(today_preds)
 df_today = df_today.nlargest(8, 'Upside_%') if not df_today.empty else df_today
